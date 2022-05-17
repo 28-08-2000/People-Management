@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PeoplePage extends StatelessWidget {
+class group1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     //drawer: NavigationDrawerWidget(),
