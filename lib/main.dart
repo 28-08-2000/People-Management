@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:people_management/widget/navigation_drawer_widget.dart';
+import 'package:people_management/widget/drawer_button_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,10 +47,19 @@ class _MainPageState extends State<MainPage> {
 
       appBar: AppBar(title: const Text("Peoples")),
 
-      body: const Center(
-        child: Text("This is a home page"),
-      ),
-
+      body: Builder (
+        builder: (context) => Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(horizontal: 32),
+          child: ButtonWidget(
+            icon: Icons.open_in_new,
+            text: 'Check Groups',
+            onClicked: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        )
+    )
     );
   }
 }
