@@ -23,8 +23,8 @@ class UserPage extends StatelessWidget {
     // body of the page
     body: Image.network(
       urlImage,
-      width: 100,
-      height: 100,
+      width: double.infinity,
+      height: double.infinity,
       fit: BoxFit.cover,
     ),
   );

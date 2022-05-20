@@ -12,7 +12,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     // demo user details
     final name = "DSM";
     final email = "DSM@freeguy.com";
-    final urlImage = 'https://www.istockphoto.com/photo/abstract-graphic-world-map-illustration-on-blue-background-big-data-and-networking-gm1294021851-388180453?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Furl&utm_term=url%3A%3Asearch-explore-top-affiliate-outside-feed-x-v2%3Acontrol';
+    final urlImage = 'https://images.unsplash.com/photo-1501776527793-c75adab77089?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500';
 
     // drawer means side navigation bar
     return Drawer(
