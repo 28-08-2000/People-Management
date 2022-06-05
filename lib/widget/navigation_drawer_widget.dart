@@ -22,7 +22,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     // drawer means side navigation bar
     return Drawer(
 
-      // 
+      //
 
       // properties of sidebar
       child: Material(
