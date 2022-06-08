@@ -15,7 +15,7 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: Size.fromHeight(50),
+        minimumSize: const Size.fromHeight(50),
       ),
       onPressed: onClicked,
       child: buildContent(),
@@ -25,7 +25,7 @@ class ButtonWidget extends StatelessWidget {
     mainAxisSize: MainAxisSize.min,
     children: [
       Icon(icon, size: 28),
-      SizedBox(width: 16),
+      const SizedBox(width: 16),
       Text(text)
     ],
   );

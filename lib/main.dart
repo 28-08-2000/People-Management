@@ -16,23 +16,22 @@ class MyApp extends StatelessWidget {
 
     // material app
     return MaterialApp(
-      // title of the app
-      title: appName,
+        title: appName,
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: const Color.fromRGBO(50, 175, 150, 1),
+          fontFamily: 'Georgia',
+        ),
 
-      // theme of the app
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Color.fromRGBO(50, 175, 150, 1),
-
-        fontFamily: 'Georgia',
-      ),
-
-      // home page of the app
-      home: MainPage());
+        // home page of the app
+        home: const MainPage()
+    );
   }
 }
 
 class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
+
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -42,6 +41,10 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    // to get the name of the group
+    TextEditingController groupNameController = TextEditingController();
+
     return Scaffold(
       drawer: NavigationDrawerWidget(),
 
@@ -50,14 +53,56 @@ class _MainPageState extends State<MainPage> {
       body: Builder (
         builder: (context) => Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.symmetric(horizontal: 32),
-          child: ButtonWidget(
-            icon: Icons.open_in_new,
-            text: 'Check Groups',
-            onClicked: () {
-              Scaffold.of(context).openDrawer();
-            },
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+
+          // list of widgets
+          child: ListView(
+              children: <Widget>[
+                
+                // text field to make new group
+                TextFormField(
+                  // controller for this field
+                  controller: groupNameController,
+
+                  decoration: const InputDecoration(
+                    hintText: 'Enter Group Name',
+                  ),
+
+                ),
+
+                ElevatedButton(
+                  onPressed: () {
+                    // Validate will return true if the form is valid, or false if
+                    // the form is invalid.
+                    if (groupNameController.text.isNotEmpty) {
+
+                        // process the data
+                        print(groupNameController.text);
+
+                        // empty the text form field after submit
+                        groupNameController.text = "";
+
+
+                    }
+                  },
+                  
+                  child: const Text('Submit'),
+                ),
+
+                const SizedBox(height: 108),
+
+                // button to opne the drawer
+                ButtonWidget(
+                    icon: Icons.open_in_new,
+                    text: 'Check Groups',
+                    onClicked: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                ),
+
+          ]
           ),
+
         )
     )
     );

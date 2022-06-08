@@ -5,7 +5,7 @@ class group2 extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
     //drawer: NavigationDrawerWidget(),
     appBar: AppBar(
-      title: Text('Group 2'),
+      title: const Text('Group 2'),
       centerTitle: true,
       backgroundColor: Colors.green,
     ),
