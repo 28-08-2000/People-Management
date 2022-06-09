@@ -6,15 +6,16 @@ class Group extends ChangeNotifier {
   var _groupCount = 0;
   var _groupNames = [];
 
+  // getter 
+  int get groupCount => _groupCount;
+  List get groupNames => _groupNames;
+
   // function to add new group
   void addGroup(String x) {
       _groupCount += 1;
       _groupNames.add(x);
 
+      notifyListeners();
   }
 
-  // getter to get group names
-  List get getGroupNames {
-      return _groupNames;
-  }
 }

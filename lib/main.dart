@@ -2,8 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:people_management/widget/navigation_drawer_widget.dart';
 import 'package:people_management/widget/drawer_button_widget.dart';
 
+// import providers
+import 'package:people_management/providers/group_name.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:provider/provider.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(providers: [
+        ChangeNotifierProvider(create: (_) => Group()),
+      ],
+
+      child: const MyApp(),
+      
+      ),
+    );
 }
 
 // starts the app
@@ -76,8 +90,14 @@ class _MainPageState extends State<MainPage> {
                     // the form is invalid.
                     if (groupNameController.text.isNotEmpty) {
 
-                        // process the data
+                        // add the name to group names provider
                         print(groupNameController.text);
+
+                        context.read<Group>().addGroup(groupNameController.text);
+
+                        // print some details
+                        print(context.watch<Group>().groupCount);
+                        print(context.watch<Group>().groupNames);
 
                         // empty the text form field after submit
                         groupNameController.text = "";
