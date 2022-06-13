@@ -1,8 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:people_management/page/group1.dart';
 import 'package:people_management/page/group2.dart';
 import 'package:people_management/page/user_page.dart';
+
+// import providers
+import 'package:people_management/providers/group_name.dart';
+
+import 'package:provider/provider.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
@@ -13,6 +17,10 @@ class NavigationDrawerWidget extends StatelessWidget {
     const name = "DSM";
     const email = "DSM@freeguy.com";
     const urlImage = 'https://images.unsplash.com/photo-1501776527793-c75adab77089?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500';
+
+    
+    // iterate the group names and print them
+    List group_names = Provider.of<Group>(context, listen: false).groupNames;
 
     // drawer means side navigation bar
     return Drawer(
@@ -41,7 +49,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               buildMenuItem(
                 text: 'Group 1',
                 icon: Icons.people,
-                onClicked: () => selectedItem(context, 0),
+                onClicked: () => selectedItem(context, 100),
               ),
 
               const Divider(color: Colors.greenAccent,),
@@ -49,10 +57,17 @@ class NavigationDrawerWidget extends StatelessWidget {
               buildMenuItem(
                 text: 'Group 2',
                 icon: Icons.people,
-                onClicked: () => selectedItem(context, 1),
+                onClicked: () => selectedItem(context, 101),
               ),
 
             const Divider(color: Colors.greenAccent,),
+            
+            // print the group names            
+            for (var i in group_names) buildMenuItem(
+                text: i.toString(),
+                icon: Icons.people,
+                onClicked: () => selectedItem(context, i),
+              ),
 
           ],
         ),
@@ -116,19 +131,27 @@ class NavigationDrawerWidget extends StatelessWidget {
     );
   }
 
-  void selectedItem(BuildContext context, int index) {
+  void selectedItem(BuildContext context, var index) {
     Navigator.of(context).pop();
 
     switch (index) {
-      case 0:
+      case 100:
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => group1(),
         ));
         break;
-      case 1:
+      case 101:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => group2(),
         ));
+        break;
+
+      // Go to Page Containg Group Data
+      default:
+
+        print("The group called is" + index.toString());
+
+        Navigator.pushNamed(context, '/groups', arguments: index);
         break;
     }
   }

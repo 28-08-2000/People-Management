@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:people_management/widget/navigation_drawer_widget.dart';
 import 'package:people_management/widget/drawer_button_widget.dart';
+import 'package:people_management/page/Group_Data.dart';
 
 // import providers
 import 'package:people_management/providers/group_name.dart';
 
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 
 void main() {
@@ -38,7 +38,16 @@ class MyApp extends StatelessWidget {
         ),
 
         // home page of the app
-        home: const MainPage()
+        // home: const MainPage()
+        initialRoute: '/home',
+
+        // add routes
+        routes: {
+
+          '/home': (context) => const MainPage(),
+          '/groups': (context) => const Group_Data(),
+        },
+
     );
   }
 }
@@ -88,21 +97,19 @@ class _MainPageState extends State<MainPage> {
                   onPressed: () {
                     // Validate will return true if the form is valid, or false if
                     // the form is invalid.
-                    if (groupNameController.text.isNotEmpty) {
+                    String new_group = groupNameController.text;
+
+                    if (new_group.isNotEmpty &&  !Provider.of<Group>(context, listen: false).groupNames.contains(new_group)) {
 
                         // add the name to group names provider
-                        print(groupNameController.text);
-
                         context.read<Group>().addGroup(groupNameController.text);
 
                         // print some details
-                        print(context.watch<Group>().groupCount);
-                        print(context.watch<Group>().groupNames);
+                        print(Provider.of<Group>(context, listen: false).groupCount);
+                        print(Provider.of<Group>(context, listen: false).groupNames);
 
                         // empty the text form field after submit
                         groupNameController.text = "";
-
-
                     }
                   },
                   
